@@ -1,27 +1,9 @@
-import Shop from "../models/Shop.js";  
-import Tenant from "../models/Tenant.js";  
+import Shop from "../models/Shop.js";
 
 export const createShop = async (req, res) => {
   try {
-    const { name, location, tenant } = req.body;
-
-    const isRented = tenant ? true : false;
-
-    let tenantExists = null;
-    if (tenant) {
-      tenantExists = await Tenant.findById(tenant);
-      if (!tenantExists) {
-        return res.status(400).json({ message: "Tenant not found" });
-      }
-    }
-
-    const shop = new Shop({
-      name,
-      location,
-      isRented,
-      tenant: tenantExists ? tenant : null,
-    });
-
+    const { name, location } = req.body;
+    const shop = new Shop({ name, location });
     const savedShop = await shop.save();
     res.status(201).json(savedShop);
   } catch (error) {
@@ -31,7 +13,7 @@ export const createShop = async (req, res) => {
 
 export const getAllShops = async (req, res) => {
   try {
-    const shops = await Shop.find().populate("tenant");
+    const shops = await Shop.find();
     res.status(200).json(shops);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -40,7 +22,7 @@ export const getAllShops = async (req, res) => {
 
 export const getShopById = async (req, res) => {
   try {
-    const shop = await Shop.findById(req.params.shopId).populate("tenant");
+    const shop = await Shop.findById(req.params.shopId);
     if (!shop) {
       return res.status(404).json({ message: "Shop not found" });
     }
@@ -52,21 +34,10 @@ export const getShopById = async (req, res) => {
 
 export const updateShop = async (req, res) => {
   try {
-    const { name, location, tenant } = req.body;
-
-    const isRented = tenant ? true : false;
-
-    let tenantExists = null;
-    if (tenant) {
-      tenantExists = await Tenant.findById(tenant);
-      if (!tenantExists) {
-        return res.status(400).json({ message: "Tenant not found" });
-      }
-    }
-
+    const { name, location } = req.body;
     const updatedShop = await Shop.findByIdAndUpdate(
       req.params.shopId,
-      { name, location, isRented, tenant: tenantExists ? tenant : null },
+      { name, location },
       { new: true }
     );
 

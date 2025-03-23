@@ -1,8 +1,7 @@
-import Request from "../models/Request.js";
 import Owner from "../models/Owner.js";
 import Apartment from "../models/Apartment.js";
 import Shop from "../models/Shop.js";
-import Payment from "../models/Payment.js";
+
 
 export const signInOwner = async (req, res) => {
   try {
@@ -122,22 +121,5 @@ export const getAllShops = async (req, res) => {
   }
 };
 
-export const getAllRequests = async (req, res) => {
-  try {
-    const requests = await Request.find().populate("tenant owner property");
-    res.status(200).json(requests);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching requests", error: error.message });
-  }
-};
-
-export const getPaymentDetails = async (req, res) => {
-  try {
-    const payments = await Payment.find().populate("tenant owner property");
-    res.status(200).json(payments);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching payments", error: error.message });
-  }
-};
 
 

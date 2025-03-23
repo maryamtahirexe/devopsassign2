@@ -5,7 +5,7 @@ export const fetchOwner = createAsyncThunk(
   "owner/fetchOwner",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:5000/owner");
+      const response = await axios.get("http://54.227.97.217:5000/owner");
       console.log(response.data._id);
       return response.data;
     } catch (error) {
@@ -18,9 +18,9 @@ export const updateOwner = createAsyncThunk(
   "owner/updateOwner",
   async ({ id, email, newPassword }, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:5000/owner");
+      const response = await axios.get("http://54.227.97.217:5000/owner");
       const id = response.data._id;
-      const responses = await axios.put(`http://localhost:5000/owner/${id}`, {
+      const responses = await axios.put(`http://54.227.97.217:5000/owner/${id}`, {
         email,
         password: newPassword,
       });

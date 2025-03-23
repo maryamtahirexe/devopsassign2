@@ -5,7 +5,6 @@ import {
   getApartmentById,
   updateApartment,
   deleteApartment,
-  getApartmentsByTenant,
 } from "../controllers/apartmentController.js";
 
 const router = express.Router();
@@ -15,6 +14,5 @@ router.get("/", getAllApartments);
 router.get("/:id", getApartmentById);            
 router.put("/:id", updateApartment);             
 router.delete("/:id", deleteApartment);  
-router.get("/tenant/:tenantId", getApartmentsByTenant); 
 
 export default router;

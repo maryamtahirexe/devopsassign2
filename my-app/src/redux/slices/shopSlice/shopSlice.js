@@ -12,7 +12,7 @@ export const createShop = createAsyncThunk(
   async (shopData, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/shops",
+        "http://54.227.97.217:5000/shops",
         shopData
       );
       return response.data;
@@ -26,7 +26,7 @@ export const getAllShops = createAsyncThunk(
   "shops/getAllShops",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:5000/shops");
+      const response = await axios.get("http://54.227.97.217:5000/shops");
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -38,7 +38,7 @@ export const deleteShop = createAsyncThunk(
   "shops/deleteShop",
   async (shopId, { rejectWithValue }) => {
     try {
-      await axios.delete(`http://localhost:5000/shops/${shopId}`);
+      await axios.delete(`http://54.227.97.217:5000/shops/${shopId}`);
       return shopId;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -51,7 +51,7 @@ export const updateShop = createAsyncThunk(
   async ({ shopId, updatedData }, { rejectWithValue }) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/shops/${shopId}`,
+        `http://54.227.97.217:5000/shops/${shopId}`,
         updatedData
       );
       return response.data;

@@ -38,15 +38,6 @@ const Sidebar = () => {
             <Link to="/dashboard">Property</Link>
           </li>
           <li className="mb-4 hover:text-highlightHover">
-            <Link to="/dashboard/tenants">Tenants</Link>
-          </li>
-          <li className="mb-4 hover:text-highlightHover">
-            <Link to="/dashboard/payments">Payments</Link>
-          </li>
-          <li className="mb-4 hover:text-highlightHover">
-            <Link to="/dashboard/requests">Requests</Link>
-          </li>
-          <li className="mb-4 hover:text-highlightHover">
             <Link to="/dashboard/profile/update-password">Profile</Link>
           </li>
         </ul>
