@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../../../utils/api"; 
+import {API} from "../../../utils/api.js"; 
 
 export const addProperty = createAsyncThunk(
   "property/addProperty",
@@ -7,7 +7,7 @@ export const addProperty = createAsyncThunk(
     try {
       const apiEndpoint =
         propertyType === "Apartment" ? "/apartments" : "/shops";
-      const response = await axios.post(apiEndpoint, formData);
+      const response = await API.post(apiEndpoint, formData);
       return response.data; 
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);

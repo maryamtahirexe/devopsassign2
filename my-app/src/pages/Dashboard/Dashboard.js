@@ -5,11 +5,11 @@ import { RingLoader } from "react-spinners";
 import {
   getAllShops,
   deleteShop,
-} from "../../redux/slices/shopSlice/shopSlice";
+} from "../../redux/slices/shopSlice/shopSlice.js";
 import {
   getAllApartments,
   deleteApartment,
-} from "../../redux/slices/apartmentSlice/apartmentSlice";
+} from "../../redux/slices/apartmentSlice/apartmentSlice.js";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {

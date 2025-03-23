@@ -4,7 +4,7 @@ import {
   updateOwner,
   clearMessage,
   clearError,
-} from "../../redux/slices/updateSlice/updateSlice";
+} from "../../redux/slices/updateSlice/updateSlice.js";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 

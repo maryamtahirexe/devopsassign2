@@ -6,6 +6,7 @@ import Button from "../../components/Button/button";
 import logo from "../../assets/images/logo.png";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import {API} from "../../utils/api.js";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -23,10 +24,7 @@ const SignIn = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://54.227.97.217:5000/owner/signin",
-        formData
-      );
+      const response = await API.post("/owner/signin", formData); 
 
       if (response.data.owner) {
         setPopupMessage("Sign in successful!");

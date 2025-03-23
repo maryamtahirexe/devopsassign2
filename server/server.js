@@ -12,24 +12,22 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-  "http://54.227.97.217:3000",
-  "http://your-frontend-domain.com"  // Add frontend domain if applicable
-];
-
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
+// app.use(cors({
+//   origin: ["http://107.21.157.243", "http://107.21.157.243:3000"],  
+//   credentials: true,
+// }));
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: "http://107.21.157.243:3000", // Frontend URL
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
- 
+
+// app.use(express.json({ limit: "30mb", extended: true }));
+// app.use(express.urlencoded({ limit: "30mb", extended: true }));
+
 app.use(helmet());
 app.use(morgan("dev"));
 
@@ -48,12 +46,9 @@ if (!CONNECTION_URL) {
 }
 
 mongoose
-  .connect(CONNECTION_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(CONNECTION_URL)
   .then(() =>
-    app.listen(PORT, async () => {
+    app.listen(PORT, "0.0.0.0", () => { // Bind to all network interfaces
       console.log(`Server Running on port ${PORT}`);
     })
   )
