@@ -19,7 +19,7 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }));
 //   credentials: true,
 // }));
 app.use(cors({
-  origin: "http://107.21.157.243:3000", // Frontend URL
+  origin: "http://18.234.111.248:3000", // Frontend URL
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"]
