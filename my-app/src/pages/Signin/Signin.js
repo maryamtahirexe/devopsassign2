@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import InputField from "../../components/inputField/inputField";
 import Button from "../../components/Button/button";
-import logo from "../../assets/images/logo.png";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import {API} from "../../utils/api.js";
+import { API } from "../../utils/api.js";
+import logo from "../../assets/images/logo.png";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +24,7 @@ const SignIn = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      const response = await API.post("/owner/signin", formData); 
+      const response = await API.post("/owner/signin", formData);
 
       if (response.data.owner) {
         setPopupMessage("Sign in successful!");
@@ -49,41 +49,36 @@ const SignIn = () => {
   };
 
   return (
-    <div className="bg-login-bg min-h-screen flex">
-      <div className="flex flex-col lg:flex-row w-full">
-        {/* Left Section */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-4 lg:p-12">
-          <img src={logo} alt="Logo" className="w-1/3 mb-4" />
-          <h1 className="text-3xl font-bold text-highlight">KARAYEDAR</h1>
-        </div>
-
-        {/* Right Section */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center items-center p-4 lg:p-12">
-          <h2 className="text-2xl text-highlight mb-6">Welcome Back!</h2>
-          <form className="w-full max-w-sm" onSubmit={handleSignIn}>
-            <InputField
-              label="Email"
-              type="email"
-              id="email"
-              placeholder="Enter Email Address"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-            <InputField
-              label="Password"
-              type="password"
-              id="password"
-              placeholder="Enter Password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-            <div className="mt-6">
-              <Button text="Login" />
-            </div>
-          </form>
-        </div>
+    <div className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 min-h-screen flex justify-center items-center">
+      <div className="bg-gray-100 rounded-lg shadow-lg p-8 w-full max-w-md flex flex-col items-center">
+        <img src={logo} alt="Logo" className="w-20 mb-4" />
+        <h1 className="text-4xl font-extrabold text-gray-900 mb-2">Welcome</h1>
+        <p className="text-gray-600 mb-4">Sign in to continue</p>
+        <form className="w-full" onSubmit={handleSignIn}>
+          <InputField
+            label="Email"
+            type="email"
+            id="email"
+            placeholder="Enter Email Address"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="text-black placeholder-gray-900 bg-white border border-gray-300 p-2 rounded-md"
+          />
+          <InputField
+            label="Password"
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            className="text-black placeholder-gray-900 bg-white border border-gray-300 p-2 rounded-md"
+          />
+          <div className="mt-6 w-full">
+            <Button text="Login" className="w-full bg-blue-600 hover:bg-blue-700" />
+          </div>
+        </form>
       </div>
 
       {popupMessage && (
@@ -98,4 +93,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export { SignIn };
